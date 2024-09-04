@@ -22,7 +22,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #        define VSGXCHANGE_DECLSPEC
 #    endif
 #else
-#    define VSGXCHANGE_DECLSPEC
+#    if defined(vsgXchange_EXPORTS)
+#        define VSGXCHANGE_DECLSPEC __attribute__ ((visibility("default")))
+#    elif defined(VSGXCHANGE_SHARED_LIBRARY)
+#        define VSGXCHANGE_DECLSPEC __attribute__ ((visibility("default")))
+#    else
+#        define VSGXCHANGE_DECLSPEC __attribute__ ((visibility("hidden")))
+#    endif
 #endif
 
 #endif
